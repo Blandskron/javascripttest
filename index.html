@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test de github</title>
+    <title>Smooth Scroll "Ir Arriba"</title>
+    <link rel="stylesheet" href="./assets/css/scrolltotopbtn.css">
 </head>
 <body>
-
     <h1>Esto es una prueba de Github </h1>
-    
+    <div class="content">
+        <h1>Bienvenido a la Página</h1>
+        <p>Desplázate hacia abajo para ver más contenido.</p>
+        <div style="height: 1500px;"> <!-- Simulando contenido extenso -->
+            <p>Contenido adicional aquí...</p>
+        </div>
+    </div>
+
+    <button id="scrollToTopBtn" class="scroll-to-top">Ir Arriba</button>
+
+    <script src="./assets/js/scrolltotopbtn.js"></script>
 </body>
 </html>
