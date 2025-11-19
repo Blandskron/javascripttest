@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Honorarios Chile 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="calculator" class="text-blue-600"></i>
+                    <span class="font-bold text-xl tracking-tight">Honorarios<span class="text-blue-600">Chile</span></span>
+                </div>
+                <div class="flex items-center gap-4 text-sm">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">Año 2025</span>
+                    <span class="text-slate-500">Retención vigente: <span class="font-bold text-slate-700">14.5%</span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 border-l-4 border-l-emerald-500">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Total Líquido (Bolsillo)</p>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1" id="display-liquido">$0</h3>
+                    </div>
+                    <div class="p-2 bg-emerald-50 rounded-lg text-emerald-600">
+                        <i data-lucide="wallet"></i>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-400 mt-2">Lo que recibes en el banco</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 border-l-4 border-l-orange-400">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Retención SII (14.5%)</p>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1" id="display-retencion">$0</h3>
+                    </div>
+                    <div class="p-2 bg-orange-50 rounded-lg text-orange-500">
+                        <i data-lucide="landmark"></i>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-400 mt-2">Pago anticipado cotizaciones</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 border-l-4 border-l-blue-600">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Total Boletas (Bruto)</p>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1" id="display-bruto">$0</h3>
+                    </div>
+                    <div class="p-2 bg-blue-50 rounded-lg text-blue-600">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-400 mt-2">Monto a ingresar en el SII</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
+                    <h2 class="text-lg font-semibold text-slate-800 mb-4">Nueva Actividad</h2>
+                    
+                    <form id="honorarioForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Cliente / Proyecto</label>
+                            <input type="text" id="cliente" placeholder="Ej: Agencia X" required
+                                class="w-full rounded-lg border-slate-300 border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition shadow-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Descripción Tarea</label>
+                            <input type="text" id="tarea" placeholder="Ej: Reunión pauta" required
+                                class="w-full rounded-lg border-slate-300 border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition shadow-sm">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Horas Trab.</label>
+                                <input type="number" step="0.5" id="horas" placeholder="0.0" required
+                                    class="w-full rounded-lg border-slate-300 border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition shadow-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Valor Hora (Líquido)</label>
+                                <input type="number" id="valorHora" placeholder="$" required
+                                    class="w-full rounded-lg border-slate-300 border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition shadow-sm">
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 p-3 rounded-lg text-xs text-blue-700 flex gap-2 items-start mt-2">
+                            <i data-lucide="info" class="w-4 h-4 mt-0.5 flex-shrink-0"></i>
+                            <p>El sistema calculará automáticamente el "Monto Bruto" (Gross Up) para que recibas el líquido exacto.</p>
+                        </div>
+
+                        <button type="submit" 
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-lg shadow transition duration-200 flex items-center justify-center gap-2">
+                            <i data-lucide="plus-circle" class="w-5 h-5"></i> Agregar al Index
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+                        <h2 class="text-lg font-semibold text-slate-800">Registro de Horas</h2>
+                        <button onclick="limpiarTabla()" class="text-xs text-red-500 hover:text-red-700 font-medium">Borrar Todo</button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-600">
+                            <thead class="bg-slate-50 text-xs uppercase font-bold text-slate-500">
+                                <tr>
+                                    <th class="px-6 py-3">Cliente</th>
+                                    <th class="px-6 py-3 text-center">Horas</th>
+                                    <th class="px-6 py-3 text-right">Valor Líquido</th>
+                                    <th class="px-6 py-3 text-right bg-blue-50/50 text-blue-700">Total Bruto (Boleta)</th>
+                                    <th class="px-6 py-3 text-center">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaBody" class="divide-y divide-slate-200">
+                                <tr id="emptyRow">
+                                    <td colspan="5" class="px-6 py-8 text-center text-slate-400 italic">
+                                        No has agregado registros aún.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Inicializar iconos
+        lucide.createIcons();
+
+        // Configuración Chile 2025
+        const TASA_RETENCION = 0.145; // 14.5%
+
+        // Estado
+        let registros = [];
+
+        // Referencias DOM
+        const form = document.getElementById('honorarioForm');
+        const tablaBody = document.getElementById('tablaBody');
+        const emptyRow = document.getElementById('emptyRow');
+        
+        // Totales DOM
+        const displayLiquido = document.getElementById('display-liquido');
+        const displayRetencion = document.getElementById('display-retencion');
+        const displayBruto = document.getElementById('display-bruto');
+
+        // Formateador de Moneda CLP
+        const formatter = new Intl.NumberFormat('es-CL', {
+            style: 'currency',
+            currency: 'CLP',
+            minimumFractionDigits: 0
+        });
+
+        // Evento Submit
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Obtener valores
+            const cliente = document.getElementById('cliente').value;
+            const tarea = document.getElementById('tarea').value;
+            const horas = parseFloat(document.getElementById('horas').value);
+            const valorHora = parseFloat(document.getElementById('valorHora').value);
+
+            // Cálculos Matemáticos
+            const totalLiquido = horas * valorHora;
+            // Fórmula Gross Up: Líquido / (1 - 0.145)
+            const totalBruto = Math.round(totalLiquido / (1 - TASA_RETENCION));
+            const montoRetencion = totalBruto - totalLiquido;
+
+            // Crear Objeto
+            const nuevoRegistro = {
+                id: Date.now(),
+                cliente,
+                tarea,
+                horas,
+                valorHora,
+                totalLiquido,
+                totalBruto,
+                montoRetencion
+            };
+
+            registros.push(nuevoRegistro);
+            renderTabla();
+            actualizarTotales();
+            form.reset();
+            document.getElementById('cliente').focus();
+        });
+
+        function borrarRegistro(id) {
+            registros = registros.filter(reg => reg.id !== id);
+            renderTabla();
+            actualizarTotales();
+        }
+
+        function limpiarTabla() {
+            if(confirm('¿Estás seguro de borrar todo?')) {
+                registros = [];
+                renderTabla();
+                actualizarTotales();
+            }
+        }
+
+        function renderTabla() {
+            tablaBody.innerHTML = '';
+            
+            if (registros.length === 0) {
+                tablaBody.appendChild(emptyRow);
+                return;
+            }
+
+            registros.forEach(reg => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-slate-50 transition';
+                row.innerHTML = `
+                    <td class="px-6 py-4">
+                        <p class="font-semibold text-slate-800">${reg.cliente}</p>
+                        <p class="text-xs text-slate-500">${reg.tarea}</p>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <span class="bg-slate-100 text-slate-600 py-1 px-2 rounded text-xs font-bold">${reg.horas} h</span>
+                    </td>
+                    <td class="px-6 py-4 text-right text-slate-600">
+                        ${formatter.format(reg.totalLiquido)}
+                    </td>
+                    <td class="px-6 py-4 text-right font-bold text-blue-700 bg-blue-50/30">
+                        ${formatter.format(reg.totalBruto)}
+                        <div class="text-[10px] font-normal text-slate-400">Ret: ${formatter.format(reg.montoRetencion)}</div>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <button onclick="borrarRegistro(${reg.id})" class="text-slate-400 hover:text-red-500 transition">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </td>
+                `;
+                tablaBody.appendChild(row);
+            });
+            lucide.createIcons(); // Refrescar iconos nuevos
+        }
+
+        function actualizarTotales() {
+            const totalL = registros.reduce((acc, curr) => acc + curr.totalLiquido, 0);
+            const totalB = registros.reduce((acc, curr) => acc + curr.totalBruto, 0);
+            const totalR = registros.reduce((acc, curr) => acc + curr.montoRetencion, 0);
+
+            displayLiquido.innerText = formatter.format(totalL);
+            displayBruto.innerText = formatter.format(totalB);
+            displayRetencion.innerText = formatter.format(totalR);
+        }
+    </script>
+</body>
+</html>
