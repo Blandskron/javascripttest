@@ -13,14 +13,6 @@
     <link rel="stylesheet" href="./assets/css/scrolltotopbtn.css">
 </head>
 <body class="bg-slate-50 text-slate-800">
-    <h1>Esto es una prueba de Github </h1>
-    <div class="content">
-        <h1>Bienvenido a la Página</h1>
-        <p>Desplázate hacia abajo para ver más contenido.</p>
-        <div> <!-- Simulando contenido extenso -->
-            <p>Contenido adicional aquí...</p>
-        </div>
-    </div>
     <nav class="bg-white border-b border-slate-200 sticky top-0 z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
@@ -156,12 +148,10 @@
 
         </div>
     </main>
-
-      <h1>Hola Javascript</h1>
-    <button onclick="confirm('Hola has presionado el boton y se destruira el mundo', 'Aceptar', 'Cancelar')">
+    <button class="scroll-to-top" onclick="confirm('Hola has presionado el boton y se destruira el mundo', 'Aceptar', 'Cancelar')">
         presioname
     </button>
-      <button id="scrollToTopBtn" class="scroll-to-top">Ir Arriba</button>
+    <button id="scrollToTopBtn" class="scroll-to-top">Ir Arriba</button>
     <script>
         document.body.style.backgroundColor = "lightblue";
         console.log("probando javascript");

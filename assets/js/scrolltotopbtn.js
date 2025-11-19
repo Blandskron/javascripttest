@@ -6,7 +6,7 @@ window.onscroll = function() {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         scrollToTopBtn.style.display = "block"; // Muestra el botón
     } else {
-        scrollToTopBtn.style.display = "none"; // Oculta el botón
+        scrollToTopBtn.style.display = "block"; // Oculta el botón
     }
 };
 
